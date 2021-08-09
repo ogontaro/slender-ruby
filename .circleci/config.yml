@@ -44,7 +44,5 @@ workflows:
           requires:
             - rspec
           filters:
-            branches:
-              ignore: /.*/
             tags:
               only: /^v.*/
