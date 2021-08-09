@@ -22,6 +22,12 @@ jobs:
       name: ruby
     steps:
       - checkout
+      - run:
+          name: setup rubygems key
+          command: |
+            mkdir ~/.gem
+            cat .circleci/gem_credentials | sed -e "s/__RUBYGEMS_API_KEY__/${RUBYGEMS_API_KEY}/" > ~/.gem/credentials
+            chmod 0600 ~/.gem/credentials
       - ruby-orbs/bundle-install:
           restore_bundled_with: false
           cache_key_prefix: v2-bundle
