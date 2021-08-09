@@ -1,0 +1,7 @@
+example_id                                   | status | run_time        |
+-------------------------------------------- | ------ | --------------- |
+./spec/core_extensions/array_spec.rb[1:1:1]  | passed | 0.85255 seconds |
+./spec/core_extensions/hash_spec.rb[1:1:1]   | passed | 1.62 seconds    |
+./spec/core_extensions/object_spec.rb[1:1:1] | passed | 0.00012 seconds |
+./spec/core_extensions/string_spec.rb[1:1:1] | passed | 0.1151 seconds  |
+./spec/slender_spec.rb[1:1:1]                | passed | 0.00021 seconds |
