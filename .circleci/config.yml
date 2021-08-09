@@ -1,0 +1,41 @@
+version: 2.1
+orbs:
+  ruby-orbs: sue445/ruby-orbs@1.4.3
+
+executors:
+  ruby:
+    docker:
+      - image: circleci/ruby:2.7.4
+
+jobs:
+  rspec:
+    executor:
+      name: ruby
+    steps:
+      - checkout
+      - ruby-orbs/bundle-install:
+          restore_bundled_with: false
+          cache_key_prefix: v2-bundle
+      - run: bundle exec rspec
+  release:
+    executor:
+      name: ruby
+    steps:
+      - checkout
+      - ruby-orbs/bundle-install:
+          restore_bundled_with: false
+          cache_key_prefix: v2-bundle
+      - run: bundle exec rake build
+      - run: bundle exec rake release
+
+workflows:
+  build_and_push:
+    jobs:
+      - rspec
+      - release:
+          requires:
+            - rspec
+          filters:
+            branches:
+              only:
+                - main
