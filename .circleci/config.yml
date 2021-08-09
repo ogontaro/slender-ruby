@@ -39,10 +39,10 @@ jobs:
 workflows:
   build_and_push:
     jobs:
-      - rspec
-        filters:
-          tags:
-            only: /^v.*/
+      - rspec:
+          filters:
+            tags:
+              only: /^v.*/
       - release:
           requires:
             - rspec
